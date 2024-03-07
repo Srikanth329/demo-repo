@@ -11,3 +11,8 @@ jobs:
     steps:
     - name: Echo a simple statement
       run: echo "Hello, world!"
+
+    - name: Print GitHub username and commit message
+      run: |
+        echo "GitHub Username: $GITHUB_ACTOR"
+        echo "Commit Message: $(git log --format=%B -n 1)"
