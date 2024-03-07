@@ -13,6 +13,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Check commit message format
+      run: |
+          commit_message=$(git log --format=%B -n 1 $GITHUB_SHA)
+          if [[ "$commit_message" != "${commit_message,,}" ]]; then
+            echo "Commit message must be lowercase."
+            exit 1
+          fi
+
     - name: Echo a simple statement
       run: echo "Hello, world!"
 
@@ -21,10 +29,3 @@ jobs:
         echo "GitHub Username: $GITHUB_ACTOR"
         echo "Commit Message: $(git log --format=%B -n 1)"
 
-     - name: Check commit message format
-        run: |
-          commit_message=$(git log --format=%B -n 1 $GITHUB_SHA)
-          if [[ "$commit_message" != "${commit_message,,}" ]]; then
-            echo "Commit message must be lowercase."
-            exit 1
-          fi
