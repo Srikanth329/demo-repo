@@ -1,0 +1,13 @@
+name: My Workflow
+
+on:
+  push:
+    branches:
+      - developer
+jobs:
+  echo-statements:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Echo a simple statement
+      run: echo "Hello, world!"
