@@ -6,7 +6,7 @@ on:
       - developer
 jobs:
   build:
-    if: contains(github.event.head_commit.message, 'build') && github.event.head_commit.message == lower(github.event.head_commit.message)
+    if: contains(github.event.head_commit.message, 'build') && ${{ steps.check_lowercase.outputs.lowercase }} == 'true'
     runs-on: ubuntu-latest
     
     steps:
